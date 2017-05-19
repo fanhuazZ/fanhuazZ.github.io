@@ -1,0 +1,75 @@
+.clearfix::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+body{
+	background: url(../img/002.jpeg);
+}
+.wrapper{
+	max-width: 1200px;
+	margin: auto;
+	
+}
+ul{
+	list-style-type: none;
+	padding: 0;
+}
+header{
+	margin: 30px 0;
+}
+.logo img{
+	width: 80px ;
+	height: auto;
+}
+nav ul li{
+	float: left;
+}
+.mainNav{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.mainNav ul{
+	list-style-type: none;
+	padding: 0;
+}
+.mainNav ul li{
+	float: left;
+	margin: 20px 30px;
+}
+.mainNav ul li a{
+	text-decoration: none;
+	color: greenyellow;
+	padding: 20px;
+	border: 1px solid transparent;
+	transition: all .5s;
+}
+.mainNav ul li a:hover{
+	color: white;
+	border: 1px solid white;
+}
+h2 {
+	color: white;
+}
+p{
+	color: white;
+}
+section{
+	width: 1200px;
+	margin: 60px auto;
+}
+section li{
+	float: left;
+	display: inline-block;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	margin-right:30px;
+	text-align: center;
+	background-color: chartreuse;
+	
+}
+section li a{
+	text-decoration: none;
+}
