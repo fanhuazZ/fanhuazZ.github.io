@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格的添加</title>
+	    <style type="text/css">
+		 
+			#tr{
+				border-collapse: collapse;
+				background-color:greenyellow;
+				border: 1px solid #888;
+				width: 50%;
+			}
+			#tr td {
+				border: 1px solid #888;
+				height: 10px;
+				text-align: center;
+			}
+			#btn{
+				padding:3px ;
+				margin:5px ;
+			}
+		</style>
+	</head>
+	<body>
+	
+		<table id="tr">
+			<caption>个人信息表</caption>
+			<tr>
+				<td>学号</td>
+				<td>姓名</td>
+				<td>性别</td>
+			
+			</tr>
+			<tr>
+				<td>01</td>
+				<td>张三</td>
+				<td>男</td>
+				
+			</tr>
+			<tr>
+				<td>02</td>
+				<td>李四</td>
+				<td>男</td>
+			
+			</tr>
+			<tr>
+				<td>03</td>
+				<td>王五</td>
+				<td>男</td>
+				
+			</tr>			
+		</table>
+		<input id="btn" type="button" value="添加" />
+		<script type="text/javascript">
+			var oTr = document.getElementById("tr");
+			var oBtn = document.getElementsByTagName('input')[0];
+			oBtn.onclick=function(){
+				
+				var row=oTr.insertRow(4);
+				var cell0=row.insertCell(0);
+				var cell1=row.insertCell(1);
+				var cell2=row.insertCell(2);
+				var cell3=row.insertCell(3);
+				cell0.appendChild(document.createTextNode('04'));
+				cell1.appendChild(document.createTextNode('张三'));
+				cell2.appendChild(document.createTextNode('男'));
+				
+				
+				
+			}
+		</script>
+		
+	</body>
+</html>
