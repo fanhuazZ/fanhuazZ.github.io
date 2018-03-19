@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+			}
+			#app {
+				width: 500px;
+				max-height: 500px;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin: auto;
+				overflow: hidden;
+				box-shadow: 0px 0px 6px rgba(0, 0, 0, .6);
+				padding: 30px;
+				background-color: black;
+				border: 10px solid #eeeeee;
+			}
+			#app header {
+				color: #fff;
+				border-bottom: 1px solid #fff;
+			}
+			#app header h1 {
+				margin: 0;
+			}
+			#app input {
+				width: 100%;
+				border: none;
+				outline: none;
+				padding: 1rem;
+			}
+			#app ul {
+				margin: 0;
+				padding: 0;
+			}
+			#app li {
+				list-style-type: none;
+				background-color: rgba(125, 255, 125, .5);
+				margin: .3rem 0;
+				padding: 0.5rem;
+				vertical-align: middle;
+			}
+			.done{
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+		<div id="app">
+			<header>
+				<h1>备忘录</h1>
+				<p>利用vue制作简单的备忘录</p>
+			</header>
+			<input v-model="newItemText" @keyup.enter="addIt" type="text" placeholder="添加事项" />
+
+			<ul>
+				<li v-for="(item,index) in items" v-bind:class="{done:item.done}">
+					{{item.title}}
+					<span>
+					<i class=" fa fa-check"  @click="done(item)"></i>
+					<i class="fa fa-close"@click="remove(item)"></i>
+					</span>
+				</li>
+
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			 var itemStorage = {
+				fetch: function() {
+					var items = JSON.parse(localStorage.getItem('item') || '[]');
+					return items;
+				},
+				save: function(items) {
+					localStorage.setItem('item', JSON.stringify(items));
+				}
+			};
+			var app = new Vue({
+			 	el:"#app",
+			 	data:{
+			 		newItemText: '',
+					items: itemStorage.fetch(),
+			 	},
+			 	watch: {
+					items: {
+						handler: function(val, oldVal) {
+							itemStorage.save(val);
+						},
+						deep: true,
+					}
+				},
+			 	methods:{
+			 		remove:function(item){
+			 			this.items.splice(this.items.indexOf(item),1);
+			 		},
+			 		addIt:function(){
+			 			if (this.newItemText != "") {
+							this.items.push({
+								title: this.newItemText,
+								done: false,
+							});
+							this.newItemText = '';
+						}
+			 			
+			 		},
+			 		done: function(item){
+			 			item.done=!item.done;
+			 		}
+			 	},
+			 	
+			 });
+			
+		</script>
+	</body>
+
+</html>
